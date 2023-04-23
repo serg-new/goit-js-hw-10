@@ -5,9 +5,8 @@ import './css/styles.css';
 const DEBOUNCE_DELAY = 300;
 const inputField = document.querySelector('input#search-box');
 
-inputField.addEventListener('input', debounce(inputForm, DEBOUNCE_DELAY));
+inputField.addEventListener('input', debounce(onFormInput, DEBOUNCE_DELAY));
 
-function inputForm() {
+function onFormInput() {
   fetchCountries(inputField.value.trim());
 }
-

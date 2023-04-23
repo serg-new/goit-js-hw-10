@@ -2,7 +2,7 @@ import Notiflix from 'notiflix';
 
 
 
-const countryName = document.querySelector('.country-name');
+const countryName = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 
 function fetchCountries(value) {
@@ -10,8 +10,9 @@ function fetchCountries(value) {
     fetch(`https://restcountries.com/v3.1/name/${value}?fields=name,capital,population,flags,languages`)
       .then(response => {
         if (!response.ok) {
-          clearCountryName();
           clearCountryInfo();
+          clearCountryName();
+          
           
           throw new Error(
             Notiflix.Notify.failure('Oops, there is no country with that name')
@@ -42,15 +43,15 @@ function fetchCountries(value) {
 }
 
 function clearCountryName() {
-  countriesName.innerHTML = '';
+  countryName.innerHTML = '';
 }
 
 function clearCountryInfo() {
   countryInfo.innerHTML = '';
 }
 
-function createCountryName(arrayCountriesName) {
-  const markup = arrayCountriesName
+function createCountryName(arrayCountryName) {
+  const markup = arrayCountryName
     .map(({ name, flags }) => {
       return `<li class="country-item">
       <img class="country-image" src="${flags.svg}"
